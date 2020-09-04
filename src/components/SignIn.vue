@@ -26,20 +26,44 @@
       <form class="sign-in" action="#">
         <h2>Sign In</h2>
         <div>Use your account</div>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <input 
+          required
+          v-model="userEmail"
+          type="email" 
+          placeholder="Email" 
+        />
+        <input 
+          required
+          v-model="userPassword"
+          type="password" 
+          placeholder="Password" 
+          @keyup.enter="signInUser"
+        />
         <a href="#">Forgot your password?</a>
-        <button>Sign Up</button>
+        <button @click="signInUser">Sign In</button>
       </form>
     </div>
   </article>
 </template>
 
 <script>
+  import axios from "axios";
   export default {
     data: () => {
       return {
+        userEmail: null,
+        userPassword: null,
         signUp: false
+      }
+    },
+    methods: {
+      signInUser(){
+        //let here = this;
+        //let username = String(this.userEmail);
+        //let password = String(this.userPassword);
+        axios.
+         get(`http://localhost:8000/login`)
+         .then(console.log("API call success!"))
       }
     }
   }
